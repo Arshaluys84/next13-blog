@@ -35,7 +35,7 @@ export const PostItem = ({
         }
       </div>
       <div className="mb-2 font-bold">{title}</div>
-      <div>{excerpt}</div>
+      <div className="max-w-[800px]">{excerpt}</div>
     </div>
   );
 };
