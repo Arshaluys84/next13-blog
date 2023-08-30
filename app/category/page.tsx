@@ -14,12 +14,11 @@ export default async function Search({
 }) {
   const data: Data = await getData(DATA_URL);
   const { posts, categories } = data;
+  const { slug, id } = searchParams;
 
   const filteredPosts =
-    searchParams.slug !== ALL
-      ? posts.filter((p) =>
-          p.categories.map((c) => c.toString()).includes(searchParams.id)
-        )
+    slug !== ALL
+      ? posts.filter((p) => p.categories.map((c) => c.toString()).includes(id))
       : posts;
 
   if (!filteredPosts) {

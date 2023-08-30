@@ -18,10 +18,9 @@ export const CategoryFilterBar = ({
   const router = useRouter();
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-
     const selectedValue = event.target.value;
     setSelectedCategory(selectedValue);
-    
+
     if (selectedValue === ALL) {
       setFilteredPosts(posts);
     } else {
@@ -55,9 +54,9 @@ export const CategoryFilterBar = ({
           placeholder="Select post category"
         >
           <option value="all">All Categories</option>
-          {categories.map((category, index) => (
-            <option key={index} value={category.id}>
-              {category.name}
+          {categories.map(({ id, name }) => (
+            <option key={id} value={id}>
+              {name}
             </option>
           ))}
         </select>

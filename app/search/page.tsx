@@ -15,11 +15,11 @@ export default async function Search({
   const { posts, categories } = data;
 
   const postData = posts.filter(
-    (p) =>
-      p.slug
+    ({ slug, id }) =>
+      slug
         .toLocaleLowerCase()
         .includes(searchParams.title?.toLocaleLowerCase()) ||
-      +p.id === searchParams?.id
+      +id === searchParams?.id
   );
   if (postData.length < 1) {
     notFound();
