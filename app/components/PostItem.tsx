@@ -1,6 +1,10 @@
+"use client";
+
 import { Category, Post } from "@/utils/types";
 
 import { ImageWithError } from "./ImageWithError";
+
+import { useRouter } from "next/navigation";
 
 export const PostItem = ({
   post,
@@ -9,10 +13,14 @@ export const PostItem = ({
   post: Post;
   categories: Category[];
 }) => {
+  const router = useRouter();
   return (
     <div
       key={post.id}
       className="text-black p-4 transform hover:translate-y-5 transition duration-300 ease-in-out cursor-pointer"
+      onClick={() => {
+        router.push(`/search?title=${post.slug}&id=${post.id}`);
+      }}
     >
       <div>
         <ImageWithError imageUrl={post.imageUrl} />

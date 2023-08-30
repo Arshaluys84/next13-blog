@@ -15,3 +15,11 @@ export type Data = {
     name: string,
     slug: string
   }
+
+  export type PaginationButtonsType = {
+    prevPage: () => void,
+    currentPage: number,
+    nextPage: () => void,
+    posts: Post[],
+    itemsPerPage: number,
+  };

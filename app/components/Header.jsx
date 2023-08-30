@@ -1,6 +1,6 @@
 
 
-export default function Header() {
+export  function Header() {
   return (
     <div className="h-64 text-black bg-white p-2">
       <div className="text-center mt-10">

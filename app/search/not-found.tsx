@@ -8,9 +8,9 @@ export default function Error({ error }: { error: Error }) {
       <div className="bg-white px-9 py-14 shadow rounded">
         <h3 className="text-3xl font-bold text-black">Well, so sorry</h3>
         <p className="text-reg font-bold text-black">
-          We could not find that restaurant.
+          We could not find that post.
         </p>
-        <p className="mt-6 text-sm font-light text-black">{error.message}</p>
+        <p className="mt-6 text-sm font-light text-black">{error?.message}</p>
       </div>
     </div>
   );

@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import { Post } from "@/utils/types";
 
 export default function SearchBar({ posts }: { posts: Post[] }) {
-  const [title, setTitle] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const postInputRef = useRef<HTMLInputElement | null>(null);
   const router = useRouter();
@@ -18,14 +17,17 @@ export default function SearchBar({ posts }: { posts: Post[] }) {
     if (postInputRef.current) {
       postInputRef.current.blur();
     }
+    let title = postInputRef.current?.value || "";
+    if (title === "" || title.length < 3) {
+      setErrorMessage("Please type more than 2 letters");
+      return;
+    }
 
-    if (title === "" || title.length < 3) return;
-    const selectedPost = posts.find((p) =>
+    const selectedPosts = posts.filter((p) =>
       p.title.toLocaleLowerCase().includes(title.toLowerCase())
     );
-    if (selectedPost) {
+    if (selectedPosts.length > 0) {
       router.push(`/search?title=${title}`);
-      setTitle("");
     } else {
       setErrorMessage("No such a post");
     }
@@ -40,8 +42,6 @@ export default function SearchBar({ posts }: { posts: Post[] }) {
           className="rounded  mr-3 p-2 w-[100%] text-black border"
           type="text"
           placeholder="Enter post title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
           onFocus={() => setErrorMessage("")}
           ref={postInputRef}
         />

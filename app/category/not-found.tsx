@@ -12,7 +12,7 @@ export default function Error({ error }: { error: Error }) {
         <p className="text-reg font-bold text-black">
           We could not find that post.
         </p>
-        <p className="mt-6 text-sm font-light text-black">{error.message}</p>
+        <p className="mt-6 text-sm font-light text-black">{error?.message}</p>
       </div>
     </div>
   );

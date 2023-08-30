@@ -3,8 +3,10 @@
 import React, { useState, useEffect } from "react";
 
 import { Category, Post } from "@/utils/types";
-import { PostItem } from "./PostItem";
 import { CURRENT_PAGE, ITEMS_PER_PAGE } from "@/constants/constants";
+
+import { PostItem } from "./PostItem";
+import { PaginationButtons } from "./PaginationButtons";
 
 export const PostsList = ({
   posts,
@@ -49,30 +51,13 @@ export const PostsList = ({
 
   return (
     <div className="z-10 max-w-[800px] w-full items-center justify-between font-mono text-sm">
-      <div className="flex justify-between mt-4 mb-10">
-        <button
-          onClick={prevPage}
-          disabled={currentPage === 1}
-          className={`py-2 px-4 rounded ${
-            currentPage === 1
-              ? "bg-gray-300 cursor-not-allowed"
-              : "bg-blue-500 hover:bg-blue-600"
-          }`}
-        >
-          Previous
-        </button>
-        <button
-          onClick={nextPage}
-          disabled={currentPage === Math.ceil(posts.length / itemsPerPage)}
-          className={`py-2 px-4 rounded ${
-            currentPage === Math.ceil(posts.length / itemsPerPage)
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-blue-500 hover:bg-blue-600"
-          }`}
-        >
-          Next
-        </button>
-      </div>
+      <PaginationButtons
+        nextPage={nextPage}
+        prevPage={prevPage}
+        currentPage={currentPage}
+        posts={posts}
+        itemsPerPage={itemsPerPage}
+      />
       <div className="container mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {postData.map((post: Post) => {
