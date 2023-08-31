@@ -18,7 +18,7 @@ export default function SearchBar({ posts }: { posts: Post[] }) {
       postInputRef.current.blur();
     }
     let title = postInputRef.current?.value || "";
-    if (title === "" || title.length < 3) {
+    if (title.length < 3) {
       setErrorMessage("Please type more than 2 letters");
       return;
     }
